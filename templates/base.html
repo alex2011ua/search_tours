@@ -19,13 +19,13 @@
 <body>
   <header class="container mt-3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">{{title}}</a>
+      <a class="navbar-brand" href="/flask">{{title}}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">{% for item, value in departures.items() %}
-          <li class="nav-item {% if request.path == item %}active{% endif %}">
+          <li class="nav-item {% if request.path == "/flask/departures/"+item+"/" %}active{% endif %}">
             <a class="nav-link" href="/flask/departures/{{ item }}">{{ value }}</a>
           </li>{% endfor %}
         </ul>
