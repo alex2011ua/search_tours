@@ -3,8 +3,9 @@ from data import *
 
 app = Flask(__name__)
 
-@app.route('/flask/')
+
 @app.route('/')
+@app.route('/tours/')
 def index():
     description = f"Всего доступно {len(tours)} туров. Воспользуйтесь сортировкой."
     return render_template('index.html',
@@ -15,9 +16,10 @@ def index():
                            tours=tours,
                            )
 
-@app.route('/flask/departures/<departure>/')
+
 @app.route('/departures/<departure>/')
-def departure(departure):
+@app.route('/tours/departures/<departure>/')
+def departuress(departure):
     tour_is = {}
     for item, tour in tours.items():
         if tour['departure'] == departure:
@@ -37,7 +39,7 @@ def departure(departure):
                            tours = tour_is,
                            )
 
-@app.route('/flask/tours/<id>/')
+@app.route('/tours/tours/<id>/')
 @app.route('/tours/<id>/')
 def tour(id):
     t = tours[int(id)]
