@@ -1,11 +1,13 @@
 from flask import Flask,  render_template, request
 from data import *
+from os import environ
+
 
 app = Flask(__name__)
 
-
+TEST_ENV = environ.get('test_in')
 @app.route('/')
-@app.route('/tours/')
+
 def index():
     description = f"Всего доступно {len(tours)} туров. Воспользуйтесь сортировкой."
     return render_template('index.html',
@@ -14,11 +16,12 @@ def index():
                            description=description,
                            departures=departures,
                            tours=tours,
+                           test=TEST_ENV
                            )
 
 
 @app.route('/departures/<departure>/')
-@app.route('/tours/departures/<departure>/')
+
 def departuress(departure):
     tour_is = {}
     for item, tour in tours.items():
@@ -39,7 +42,7 @@ def departuress(departure):
                            tours = tour_is,
                            )
 
-@app.route('/tours/tours/<id>/')
+
 @app.route('/tours/<id>/')
 def tour(id):
     t = tours[int(id)]
